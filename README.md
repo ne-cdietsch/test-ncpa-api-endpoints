@@ -10,11 +10,17 @@ Python tests to check the API endpoints are working as expected on NCPA clients
 ### Activate the venv (needs to be run everytime you wish to run the tests)
 ` source test_ncpa_venv/bin/activate`
 
-### Run tests without logging
-`pytest`
+## Edit the config file to set the url and token for your client
+`vim ncpa_config.py`
 
-### Run tests with logging
+### Run all tests without logging
+`pytest `
+
+### Run all tests with logging
 `pytest --log-cli-level=INFO`
+
+### Run specific test
+`pytest --log-cli-level=INFO test_ncpa_connection.py`
 
 ### Deactivate venv when done
 `deactivate`
