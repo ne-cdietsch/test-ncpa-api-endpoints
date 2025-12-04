@@ -7,14 +7,14 @@ from ncpa_config import *
 
 # Test we can connect to the API
 def test_connection():
-    url = f"{BASE_URL}/testconnect?token={api_token}"
+    url = f"{BASE_URL}/testconnect?token={API_TOKEN}"
     response = requests.get(url, verify=False)
     logger.info(response.json())
     assert response.status_code == 200
     assert response.json()["value"] == "Success."
 
 def test_api():
-    url = f"{BASE_URL}/api?token={api_token}"
+    url = f"{BASE_URL}/api?token={API_TOKEN}"
     response = requests.get(url, verify=False)
     logger.info(response.json())
     assert response.status_code == 200
