@@ -2,11 +2,8 @@ import requests
 import pytest
 import logging
 from urllib3.exceptions import InsecureRequestWarning
+from ncpa_config import *
 
-logger = logging.getLogger(__name__)
-
-BASE_URL = 'https://192.168.166.200:5693'
-api_token = 'mytoken'
 
 # Test CPU endpoint
 def test_cpu_endpoint():
@@ -31,4 +28,3 @@ def test_cpu_percent_as_check_endpoint():
     assert isinstance(response.json(), dict)
     assert isinstance(response.json()["returncode"], int)
     assert isinstance(response.json()["stdout"], str)
-    
