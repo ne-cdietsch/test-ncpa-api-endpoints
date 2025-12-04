@@ -19,3 +19,18 @@ def test_disk_physical_endpoint():
     logger.info(response.json())
     assert response.status_code == 200
     assert isinstance(response.json(), dict)
+
+def test_disk_mount_endpoint():
+    url = f"{BASE_URL}/api/disk/mount?token={api_token}"
+    response = requests.get(url, verify=False)
+    logger.info(response.json())
+    assert response.status_code == 200
+    assert isinstance(response.json(), dict)
+
+def test_disk_logical_endpoint():
+    url = f"{BASE_URL}/api/disk/logical?token={api_token}"
+    response = requests.get(url, verify=False)
+    logger.info(response.json())
+    assert response.status_code == 200
+    assert isinstance(response.json(), dict)
+
