@@ -42,6 +42,8 @@ if SYSTEM_TYPE != 'windows':
         logger.info(response.json())
         assert response.status_code == 200
         assert isinstance(response.json(), dict)
+        assert isinstance(response.json()["returncode"], int)
+        assert isinstance(response.json()["stdout"], str)
 else:
     def test_disk_logical_c_used_percent():
         url = f"{BASE_URL}/api/disk/logical/C:|/used_percent?token={API_TOKEN}"
@@ -56,3 +58,5 @@ else:
         logger.info(response.json())
         assert response.status_code == 200
         assert isinstance(response.json(), dict)
+        assert isinstance(response.json()["returncode"], int)
+        assert isinstance(response.json()["stdout"], str)
