@@ -16,5 +16,6 @@ def test_connection():
 def test_api():
     url = f"{BASE_URL}/api?token={api_token}"
     response = requests.get(url, verify=False)
+    logger.info(response.json())
     assert response.status_code == 200
     assert isinstance(response.json(), dict)
