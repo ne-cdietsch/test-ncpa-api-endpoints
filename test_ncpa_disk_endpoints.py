@@ -35,6 +35,7 @@ if SYSTEM_TYPE != 'windows':
         logger.info(response.json())
         assert response.status_code == 200
         assert isinstance(response.json(), dict)
+        assert "error" not in response.json()
 
     def test_disk_logical_root_used_percent_as_check():
         url = f"{BASE_URL}/api/disk/logical/|/used_percent?token={API_TOKEN}&warning=80&critical=90&check=true"
@@ -44,6 +45,7 @@ if SYSTEM_TYPE != 'windows':
         assert isinstance(response.json(), dict)
         assert isinstance(response.json()["returncode"], int)
         assert isinstance(response.json()["stdout"], str)
+        assert "does not exist" not in response.json()["stdout"]
 else:
     def test_disk_logical_c_used_percent():
         url = f"{BASE_URL}/api/disk/logical/C:|/used_percent?token={API_TOKEN}"
@@ -51,6 +53,7 @@ else:
         logger.info(response.json())
         assert response.status_code == 200
         assert isinstance(response.json(), dict)
+        assert "error" not in response.json()
 
     def test_disk_logical_c_used_percent_as_check():
         url = f"{BASE_URL}/api/disk/logical/C:|/used_percent?token={API_TOKEN}&warning=80&critical=90&check=true"
@@ -60,3 +63,4 @@ else:
         assert isinstance(response.json(), dict)
         assert isinstance(response.json()["returncode"], int)
         assert isinstance(response.json()["stdout"], str)
+        assert "does not exist" not in response.json()["stdout"]
