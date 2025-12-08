@@ -1,7 +1,6 @@
 import requests
 import pytest
 import logging
-from urllib3.exceptions import InsecureRequestWarning
 from ncpa_config import *
 
 
