@@ -1,65 +1,26 @@
-import requests
-import pytest
-import logging
-from ncpa_config import *
+from ncpa_config import get_endpoint, get_endpoint_as_check
 
 
 # Test Disk endpoint
-def test_disk_endpoint():
-    url = f"{BASE_URL}/api/disk?token={API_TOKEN}"
-    response = requests.get(url, verify=False)
-    logger.info(response.json())
-    assert response.status_code == 200
-    assert isinstance(response.json(), dict)
+#
+# List of endpoints to test
+ENDPOINT_DATA = [
+    ("disk"),
+    ("disk/physical"),
+    ("disk/mount"),
+    ("disk/logical"),
+    ("disk/logical/|/used_percent") if SYSTEM_TYPE != 'windows' else ("disk/logical/C:|/used_percent"),
+]
 
-def test_disk_physical():
-    url = f"{BASE_URL}/api/disk/physical?token={API_TOKEN}"
-    response = requests.get(url, verify=False)
-    logger.info(response.json())
-    assert response.status_code == 200
-    assert isinstance(response.json(), dict)
+# List of endpoints to test as checks
+CHECK_DATA = [
+    ("disk/logical/|/used_percent") if SYSTEM_TYPE != 'windows' else ("disk/logical/C:|/used_percent"),
+]
 
-def test_disk_mount():
-    url = f"{BASE_URL}/api/disk/mount?token={API_TOKEN}"
-    response = requests.get(url, verify=False)
-    logger.info(response.json())
-    assert response.status_code == 200
-    assert isinstance(response.json(), dict)
+@pytest.mark.parametrize("endpoint", ENDPOINT_DATA)
+def test_disk_endpoints(endpoint):
+    get_endpoint(endpoint)
 
-# The logical device names will vary based on OS and configuration
-if SYSTEM_TYPE != 'windows':
-    def test_disk_logical_root_used_percent():
-        url = f"{BASE_URL}/api/disk/logical/|/used_percent?token={API_TOKEN}"
-        response = requests.get(url, verify=False)
-        logger.info(response.json())
-        assert response.status_code == 200
-        assert isinstance(response.json(), dict)
-        assert "error" not in response.json()
-
-    def test_disk_logical_root_used_percent_as_check():
-        url = f"{BASE_URL}/api/disk/logical/|/used_percent?token={API_TOKEN}&warning=80&critical=90&check=true"
-        response = requests.get(url, verify=False)
-        logger.info(response.json())
-        assert response.status_code == 200
-        assert isinstance(response.json(), dict)
-        assert isinstance(response.json()["returncode"], int)
-        assert isinstance(response.json()["stdout"], str)
-        assert "does not exist" not in response.json()["stdout"]
-else:
-    def test_disk_logical_c_used_percent():
-        url = f"{BASE_URL}/api/disk/logical/C:|/used_percent?token={API_TOKEN}"
-        response = requests.get(url, verify=False)
-        logger.info(response.json())
-        assert response.status_code == 200
-        assert isinstance(response.json(), dict)
-        assert "error" not in response.json()
-
-    def test_disk_logical_c_used_percent_as_check():
-        url = f"{BASE_URL}/api/disk/logical/C:|/used_percent?token={API_TOKEN}&warning=80&critical=90&check=true"
-        response = requests.get(url, verify=False)
-        logger.info(response.json())
-        assert response.status_code == 200
-        assert isinstance(response.json(), dict)
-        assert isinstance(response.json()["returncode"], int)
-        assert isinstance(response.json()["stdout"], str)
-        assert "does not exist" not in response.json()["stdout"]
+@pytest.mark.parametrize("endpoint", CHECK_DATA)
+def test_disk_endpoints_as_checks(endpoint):
+    get_endpoint_as_check(endpoint)

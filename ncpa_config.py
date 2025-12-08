@@ -2,11 +2,14 @@ import requests
 import pytest
 import logging
 
+
+# Configuration variables for NCPA API tests
 logger = logging.getLogger(__name__)
 BASE_URL = 'https://localhost:5693/api/'
 API_TOKEN = 'mytoken'
 SYSTEM_TYPE = 'linux'  # or 'windows', 'macos', 'solaris'
 
+# Helper functions to get endpoints
 def get_endpoint(endpoint_path):
     url = f"{BASE_URL}/{endpoint_path}?token={API_TOKEN}"
     response = requests.get(url, verify=False)

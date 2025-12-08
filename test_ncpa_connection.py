@@ -1,9 +1,9 @@
-import requests
-import pytest
-import logging
-from ncpa_config import *
+from ncpa_config import get_endpoint
 
 
+# Test NCPA connection and basic API endpoint functionality 
+#
+# List of endpoints to test
 ENDPOINT_DATA = [
     (""),
 ]

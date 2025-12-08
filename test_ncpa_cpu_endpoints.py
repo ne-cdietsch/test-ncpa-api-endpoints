@@ -1,15 +1,15 @@
-import requests
-import pytest
-import logging
-from ncpa_config import *
+from ncpa_config import get_endpoint, get_endpoint_as_check
 
 
 # Test CPU endpoint
+#
+# List of endpoints to test
 ENDPOINT_DATA = [
     ("cpu"),
     ("cpu/percent"),
 ]
 
+# List of endpoints to test as checks
 CHECK_DATA = [
     ("cpu/percent"),
 ]
