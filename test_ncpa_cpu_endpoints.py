@@ -1,5 +1,6 @@
 import pytest
-from ncpa_config import get_endpoint, get_endpoint_as_check
+# Import ncpa_config module to access configuration and helper functions
+from ncpa_config import *
 
 
 # Test CPU endpoint

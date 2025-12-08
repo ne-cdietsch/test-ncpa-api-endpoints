@@ -1,7 +1,8 @@
 import requests
 import pytest
 import logging
-from ncpa_config import get_endpoint
+# Import ncpa_config module to access configuration and helper functions
+from ncpa_config import *
 
 
 # Test NCPA connection and basic API endpoint functionality 
