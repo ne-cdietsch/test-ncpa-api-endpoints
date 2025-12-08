@@ -11,6 +11,15 @@ ENDPOINT_DATA = [
     ("cpu/percent&warning=80&critical=90&check=true"),
 ]
 
+CHECK_DATA = [
+    ("cpu/percent&warning=80&critical=90&check=true"),
+]
+
 @pytest.mark.parametrize("endpoint", ENDPOINT_DATA)
 def test_cpu_endpoints(endpoint):
     get_endpoint(endpoint)
+
+@pytest.mark.parametrize("endpoint", CHECK_DATA)
+def test_cpu_endpoints_as_checks(endpoint):
+
+

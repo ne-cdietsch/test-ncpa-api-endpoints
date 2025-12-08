@@ -13,4 +13,15 @@ def get_endpoint(endpoint_path):
     logger.info(response.json())
     assert response.status_code == 200
     assert isinstance(response.json(), dict)
+    assert "error" not in response.json()
 
+def get_endpoint_as_check(endpoint_path):
+    url = f"{BASE_URL}/{endpoint_path}?token={API_TOKEN}&warning=80&critical=90&check=true"
+    response = requests.get(url, verify=False)
+    logger.info(response.json())
+    assert response.status_code == 200
+    assert isinstance(response.json(), dict)
+    assert "error" not in response.json()
+    assert isinstance(response.json()["returncode"], int)
+    assert isinstance(response.json()["stdout"], str)
+    assert "does not exist" not in response.json()["stdout"]
