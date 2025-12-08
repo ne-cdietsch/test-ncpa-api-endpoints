@@ -13,5 +13,6 @@ def test_connection():
     assert response.status_code == 200
     assert response.json()["value"] == "Success."
 
+@pytest.fixture
 def test_api():
     test_api_endpoint("api")
