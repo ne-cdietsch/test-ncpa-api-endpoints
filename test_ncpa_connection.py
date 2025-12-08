@@ -14,5 +14,4 @@ def test_connection():
     assert response.json()["value"] == "Success."
 
 def test_api():
-    url = f"{BASE_URL}/api?token={API_TOKEN}"
-    test_api_endpoint(url)
+    test_api_endpoint("api")
