@@ -1,3 +1,4 @@
+import pytest
 from ncpa_config import get_endpoint, get_endpoint_as_check
 
 
