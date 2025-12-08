@@ -8,11 +8,10 @@ from ncpa_config import *
 ENDPOINT_DATA = [
     ("cpu"),
     ("cpu/percent"),
-    ("cpu/percent&warning=80&critical=90&check=true"),
 ]
 
 CHECK_DATA = [
-    ("cpu/percent&warning=80&critical=90&check=true"),
+    ("cpu/percent"),
 ]
 
 @pytest.mark.parametrize("endpoint", ENDPOINT_DATA)
@@ -21,5 +20,5 @@ def test_cpu_endpoints(endpoint):
 
 @pytest.mark.parametrize("endpoint", CHECK_DATA)
 def test_cpu_endpoints_as_checks(endpoint):
-
+    get_endpoint_as_check(endpoint)
 
