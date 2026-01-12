@@ -7,7 +7,6 @@ import logging
 logger = logging.getLogger(__name__)
 BASE_URL = 'https://localhost:5693/api/'
 API_TOKEN = 'mytoken'
-FILTERS = ''
 SYSTEM_TYPE = 'linux'  # or 'windows', 'macos', 'solaris'
 
 # Helper functions to get endpoints

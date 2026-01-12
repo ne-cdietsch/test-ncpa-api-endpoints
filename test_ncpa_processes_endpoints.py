@@ -23,10 +23,10 @@ def test_processes_endpoints(endpoint):
 def test_processes_endpoints_as_checks(endpoint):
     get_endpoint_as_check(endpoint)
 
-@pytest.mark.parametrize("endpoint", "filters", ENDPOINT_DATA)
-def test_processes_endpoints_filtered(endpoint):
+@pytest.mark.parametrize("endpoint,filters", ENDPOINT_DATA)
+def test_processes_endpoints_filtered(endpoint, filters):
     get_endpoint_filtered(endpoint, filters)
 
-@pytest.mark.parametrize("endpoint", "filters", CHECK_DATA)
-def test_processes_endpoints_as_checks_filtered(endpoint):
-    get_endpoint_as_check(endpoint, filters)
+@pytest.mark.parametrize("endpoint,filters", CHECK_DATA)
+def test_processes_endpoints_as_checks_filtered(endpoint, filters):
+    get_endpoint_as_check_filtered(endpoint, filters)
