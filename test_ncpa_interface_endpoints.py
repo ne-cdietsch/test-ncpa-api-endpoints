@@ -8,13 +8,13 @@ from ncpa_config import *
 # List of endpoints to test
 ENDPOINT_DATA = [
     ("interface"),
-    ("interface/eth0") if SYSTEM_TYPE != 'windows' else ("interface/Ethernet"),
-    ("interface/eth0/bytes_recv") if SYSTEM_TYPE != 'windows' else ("interface/Ethernet/bytes_recv"),
+    ("interface/{interface}").format(interface=NETWORK_INTERFACE),
+    ("interface/eth0/bytes_recv")
 ]
 
 # List of endpoints to test as checks
 CHECK_DATA = [
-    ("interface/eth0/bytes_recv") if SYSTEM_TYPE != 'windows' else ("interface/Ethernet/bytes_recv"),
+    ("interface/eth0/bytes_recv"),
 ]
 
 @pytest.mark.parametrize("endpoint", ENDPOINT_DATA)

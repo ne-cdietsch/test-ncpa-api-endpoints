@@ -13,7 +13,8 @@ ENDPOINT_DATA = [
 ]
 
 def test_connection():
-    url = f"{BASE_URL.replace("api/", "")}/testconnect?token={API_TOKEN}"
+    base = BASE_URL.replace("api/", "")
+    url = f"{base}/testconnect?token={API_TOKEN}"
     response = requests.get(url, verify=False)
     logger.info(response.json())
     assert response.status_code == 200
