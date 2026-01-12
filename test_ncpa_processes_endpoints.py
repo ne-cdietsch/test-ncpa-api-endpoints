@@ -8,12 +8,12 @@ from ncpa_config import *
 # List of endpoints to test
 ENDPOINT_DATA = [
     ("processes"),
-    ("processes?name=ncpa") if SYSTEM_TYPE != 'windows' else ("processes?name=ncpa.exe"),
+    ("processes&name=ncpa") if SYSTEM_TYPE != 'windows' else ("processes&name=ncpa.exe"),
 ]
 
 # List of endpoints to test as checks
 CHECK_DATA = [
-    ("processes?name=ncpa") if SYSTEM_TYPE != 'windows' else ("processes?name=ncpa.exe"),
+    ("processes&name=ncpa") if SYSTEM_TYPE != 'windows' else ("processes&name=ncpa.exe"),
 ]
 
 @pytest.mark.parametrize("endpoint", ENDPOINT_DATA)
