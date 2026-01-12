@@ -1,0 +1,25 @@
+import pytest
+# Import ncpa_config module to access configuration and helper functions
+from ncpa_config import *
+
+
+# Test user endpoint
+#
+# List of endpoints to test
+ENDPOINT_DATA = [
+    ("user"),
+    ("user/count"),
+]
+
+# List of endpoints to test as checks
+CHECK_DATA = [
+    ("user/count"),
+]
+
+@pytest.mark.parametrize("endpoint", ENDPOINT_DATA)
+def test_user_endpoints(endpoint):
+    get_endpoint(endpoint)
+
+@pytest.mark.parametrize("endpoint", CHECK_DATA)
+def test_user_endpoints_as_checks(endpoint):
+    get_endpoint_as_check(endpoint)
