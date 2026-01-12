@@ -11,7 +11,7 @@ FILTERS = ''
 SYSTEM_TYPE = 'linux'  # or 'windows', 'macos', 'solaris'
 
 # Helper functions to get endpoints
-def get_endpoint(endpoint_path):
+def get_endpoint(endpoint_path, filters=""):
     url = f"{BASE_URL}/{endpoint_path}?token={API_TOKEN}{FILTERS}"
     response = requests.get(url, verify=False)
     logger.info(response.json())
@@ -19,7 +19,7 @@ def get_endpoint(endpoint_path):
     assert isinstance(response.json(), dict)
     assert "error" not in response.json()
 
-def get_endpoint_as_check(endpoint_path):
+def get_endpoint_as_check(endpoint_path, filters=""):
     url = f"{BASE_URL}/{endpoint_path}?token={API_TOKEN}&warning=80&critical=90&check=true{FILTERS}"
     response = requests.get(url, verify=False)
     logger.info(response.json())
