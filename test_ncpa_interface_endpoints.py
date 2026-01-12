@@ -9,12 +9,12 @@ from ncpa_config import *
 ENDPOINT_DATA = [
     ("interface"),
     ("interface/{interface}").format(interface=NETWORK_INTERFACE),
-    ("interface/eth0/bytes_recv")
+    ("interface/{interface}/bytes_recv").format(interface=NETWORK_INTERFACE),
 ]
 
 # List of endpoints to test as checks
 CHECK_DATA = [
-    ("interface/eth0/bytes_recv"),
+    ("interface/{interface}/bytes_recv").format(interface=NETWORK_INTERFACE),
 ]
 
 @pytest.mark.parametrize("endpoint", ENDPOINT_DATA)
