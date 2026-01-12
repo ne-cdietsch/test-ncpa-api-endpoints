@@ -25,7 +25,8 @@ def test_services_endpoints_as_checks(endpoint):
 
 # Additional filter configurations
 FILTERS = [
-    "&service=ncpa",
+    "&services=ncpa",
+    "&match=search",
 ]
 
 @pytest.mark.parametrize("endpoint", ENDPOINT_DATA)
