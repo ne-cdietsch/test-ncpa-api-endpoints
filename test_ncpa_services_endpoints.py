@@ -11,12 +11,12 @@ ENDPOINT_DATA = [
 ]
 
 ENDPOINT_DATA_FILTERED = [
-    ("services", "&services=ncpa&match=search"),
+    ("services", "&service=ncpa&match=search"),
 ]
 
 # List of endpoints to test as checks
 CHECK_DATA_FILTERED = [
-    ("services", "&services=ncpa&match=search"),
+    ("services", "&service=ncpa&match=search"),
 ]
 
 @pytest.mark.parametrize("endpoint", ENDPOINT_DATA)
