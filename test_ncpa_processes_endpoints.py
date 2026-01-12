@@ -26,13 +26,13 @@ def test_processes_endpoints_as_checks(endpoint):
 # Additional filter configurations
 FILTERS = [
     "&name=ncpa",
-    "&match=search"
+    "&match=search",
 ]
 
-@pytest.mark.parametrize("endpoint", ENDPOINT_DATA)
+@pytest.mark.parametrize("endpoint", ENDPOINT_DATA, FILTERS)
 def test_processes_endpoints_filtered(endpoint):
     get_endpoint(endpoint)
 
-@pytest.mark.parametrize("endpoint", CHECK_DATA)
+@pytest.mark.parametrize("endpoint", CHECK_DATA, FILTERS)
 def test_processes_endpoints_as_checks_filtered(endpoint):
     get_endpoint_as_check(endpoint)

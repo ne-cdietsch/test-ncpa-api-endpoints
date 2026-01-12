@@ -12,7 +12,7 @@ SYSTEM_TYPE = 'linux'  # or 'windows', 'macos', 'solaris'
 
 # Helper functions to get endpoints
 def get_endpoint(endpoint_path):
-    url = f"{BASE_URL}/{endpoint_path}?token={API_TOKEN}"
+    url = f"{BASE_URL}/{endpoint_path}?token={API_TOKEN}{FILTERS}"
     response = requests.get(url, verify=False)
     logger.info(response.json())
     assert response.status_code == 200
